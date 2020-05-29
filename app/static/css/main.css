@@ -1,0 +1,676 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Poppins;
+  line-height: 1.618;
+  color: #1d3557;
+}
+
+a {
+  text-decoration: none;
+}
+
+.con {
+  padding: 40px 80px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.nav-grid {
+  display: grid;
+  grid-template-columns: 10% auto 30%;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: 700;
+}
+.logo a {
+  color: #1d3557;
+}
+
+.logo-inverse a {
+  color: #fff;
+}
+
+.nav-links {
+  text-align: center;
+  margin: 5px;
+}
+.nav-links a {
+  font-size: 18px;
+  margin: 0 10px;
+  color: #1d3557;
+}
+.nav-links a:hover {
+  color: #e63946;
+  border-bottom: 2px solid #e63946;
+}
+.nav-links .act-link {
+  color: #e63946;
+  border-bottom: 2px solid #e63946;
+}
+
+.nav-btns {
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: end;
+}
+
+.inverse {
+  color: #fff;
+}
+.inverse a {
+  color: white;
+}
+.inverse .link {
+  margin: 0 25px 0 0;
+}
+.inverse .link:hover {
+  color: #e63946;
+  border-bottom: 2px solid #e63946;
+}
+.inverse .nav-btns {
+  grid-template-columns: auto auto auto;
+  align-items: center;
+}
+
+.btn, .btn-outline, .btn-pink {
+  padding: 7px 35px;
+  margin: 0 4px;
+  border-radius: 5px;
+  font-weight: 700;
+  box-shadow: 0px 2px 2px 0 rgba(0, 0, 0, 0.1);
+}
+.btn:hover, .btn-outline:hover, .btn-pink:hover {
+  box-shadow: 0px 4px 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+.btn-pink {
+  color: #fff;
+  border: 2px solid #e63946;
+  background-color: #e63946;
+  transition: 0.2s ease;
+}
+.btn-pink:hover {
+  background-color: #d64551;
+  border: 2px solid #d64551;
+}
+
+.btn-outline {
+  color: #1d3557;
+  border: 2px solid #1d3557;
+  transition: 0.2s ease;
+}
+.btn-outline:hover {
+  color: #fff;
+  background-color: #1d3557;
+}
+
+.sec, .sec-right, .sec-left {
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items: center;
+}
+
+.sec-left {
+  padding: 80px 80px;
+}
+.sec-left section {
+  color: #1d3557;
+  margin-right: 100px;
+}
+.sec-left section h1 {
+  font-size: 36px;
+  margin-right: 20px;
+}
+.sec-left section p {
+  margin-right: 40px;
+  margin-bottom: 30px;
+}
+
+.btn-group .btn-pink {
+  margin: 0 10px 0 0;
+}
+.btn-group .btn-outline {
+  margin: 0 0 0 10px;
+}
+
+.main-img img {
+  width: 100%;
+  margin: 0 auto;
+  max-width: 600px;
+}
+
+.color-con {
+  background-color: #457b9d;
+  color: #fff;
+}
+
+.sec-right {
+  padding: 100px 80px;
+}
+.sec-right section {
+  color: #fff;
+  margin-left: 100px;
+}
+.sec-right section h1 {
+  font-size: 36px;
+  margin-right: 20px;
+  margin-bottom: 10px;
+}
+.sec-right section p {
+  margin-right: 40px;
+  margin-bottom: 30px;
+}
+
+.job-cat-group {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+}
+
+.cat-con {
+  background-color: #fff;
+  color: #1d3557;
+  padding: 30px 20px;
+  border-radius: 10px;
+  margin: 10px;
+  transition: 0.5s ease;
+  cursor: pointer;
+}
+.cat-con h4 {
+  margin-bottom: 5px;
+}
+.cat-con p {
+  margin-top: 2px;
+}
+.cat-con:hover {
+  background-color: #e63946;
+  color: #fff;
+}
+
+.newsletter {
+  padding: 80px 80px;
+  text-align: center;
+}
+.newsletter h1 {
+  margin-bottom: 0;
+}
+.newsletter p {
+  margin-top: 0;
+}
+.newsletter input {
+  padding: 5px 30px;
+  font-size: 18px;
+  margin: 0;
+}
+.newsletter button {
+  background-color: #e63946;
+  color: #fff;
+  padding: 7px 20px;
+  margin: 0;
+  border: none;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+footer {
+  background-color: #1d3557;
+}
+
+.sign-main-con {
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+.m0 {
+  margin: 0;
+}
+
+.sign-nav-btns {
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  justify-content: end;
+  align-items: center;
+}
+.sign-nav-btns .link {
+  margin: 0 25px 0 0;
+  color: #1d3557;
+}
+.sign-nav-btns .link:hover {
+  color: #e63946;
+  border-bottom: 2px solid #e63946;
+}
+
+.sign-pad {
+  padding: 40px 80px 80px 80px;
+}
+
+.sign-top-btm {
+  padding: 40px 0 80px 0;
+}
+
+.sign-img {
+  height: 350px;
+}
+
+.sign-main-form button {
+  background-color: #e63946;
+  color: #fff;
+  padding: 7px 20px;
+  margin: 5px;
+  border: none;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.sign-check-con label {
+  font-size: 22px;
+  font-weight: 700;
+}
+.sign-check-con p {
+  margin: 5px 26px;
+}
+
+.sign-con {
+  margin: 0 auto;
+  padding: 40px 60px;
+  background-color: #fff;
+  max-width: 500px;
+  border-radius: 20px;
+  text-align: center;
+}
+.sign-con h1 {
+  font-size: 28px;
+  margin-bottom: 5px;
+}
+
+.sign-title {
+  color: #1d3557;
+}
+
+.sign-form {
+  display: grid;
+  justify-content: center;
+  color: #1d3557;
+}
+.sign-form a {
+  color: #e63946;
+  font-weight: 700;
+}
+.sign-form input {
+  padding: 10px 80px 10px 20px;
+  font-size: 18px;
+  margin: 10px 0;
+  border-radius: 10px;
+  border: 1px solid #aaaaaa;
+}
+.sign-form button {
+  font-weight: 700;
+  font-size: 18px;
+  margin: 10px 100px;
+}
+.sign-form .check {
+  cursor: pointer;
+}
+
+.con-sign {
+  padding: 40px 80px 80px 80px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.error {
+  color: #e63946;
+  margin: 0;
+  font-size: 14px;
+  text-align: left;
+}
+
+.login-con {
+  padding: 50px;
+}
+
+.job-search-con {
+  padding: 0 80px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.job-search input {
+  padding: 10px;
+  width: 300px;
+  border: 2px solid #aaaaaa;
+  border-radius: 10px;
+  font-size: 18px;
+}
+.job-search select {
+  padding: 10px;
+  width: 150px;
+  border: 2px solid #aaaaaa;
+  border-radius: 10px;
+  font-size: 18px;
+  color: #1d3557;
+}
+.job-search button {
+  font-weight: 700;
+  font-size: 18px;
+  margin: 5px;
+}
+
+.jobs-grid {
+  display: grid;
+  grid-template-columns: 55% 40%;
+}
+
+.job-con {
+  border: 2px solid #aaaaaa;
+  padding: 40px 20px;
+  margin: 20px 0;
+  border-radius: 10px;
+}
+
+.job-title {
+  margin: 0;
+}
+
+.company-title {
+  font-size: 14px;
+  color: #aaaaaa;
+  margin: 0 0 10px 0;
+}
+
+.job-con-grid {
+  display: grid;
+  grid-template-columns: auto 40% auto;
+  align-items: center;
+}
+
+.job-alert {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 20px;
+  border: 2px solid #aaaaaa;
+  margin: 20px 30px;
+  text-align: center;
+  padding: 40px;
+}
+.job-alert p {
+  margin: 0 0 5px 0;
+}
+.job-alert form input {
+  width: 80%;
+  padding: 10px;
+  margin-bottom: 5px;
+  border: 1px solid #aaaaaa;
+  border-radius: 10px;
+}
+.job-alert form button {
+  font-weight: 700;
+  font-size: 18px;
+  margin: 5px;
+}
+
+.job-info-con {
+  max-width: 700px;
+}
+
+.job-details {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  justify-content: left;
+  grid-gap: 20px;
+}
+
+@media only screen and (max-width: 1080px) {
+  body {
+    text-align: center;
+  }
+
+  .sign-main-con {
+    grid-template-columns: auto;
+    grid-row-gap: 30px;
+  }
+
+  .sec-left {
+    grid-template-columns: auto;
+    grid-row-gap: 30px;
+    justify-items: center;
+  }
+  .sec-left section {
+    margin: 0;
+  }
+  .sec-left section h1 {
+    margin: 5px 0;
+    font-size: 24px;
+  }
+  .sec-left section p {
+    margin: 10px 0;
+    font-size: 16px;
+  }
+
+  .sec-right {
+    grid-template-columns: auto;
+    grid-row-gap: 40px;
+    justify-items: center;
+  }
+  .sec-right section {
+    margin: 0;
+  }
+  .sec-right section h1 {
+    margin: 5px 0;
+    font-size: 24px;
+  }
+  .sec-right section p {
+    margin: 10px 0;
+    font-size: 16px;
+  }
+
+  .main-img {
+    max-width: 400px;
+  }
+
+  .btn-group {
+    padding: 30px 10px;
+  }
+
+  .job-cat-group {
+    grid-template-columns: auto auto;
+  }
+
+  .sign-form {
+    display: block;
+  }
+  .sign-form input {
+    width: 70%;
+  }
+  .sign-form .check {
+    width: auto;
+  }
+  .sign-form button {
+    margin: 10px 0;
+  }
+
+  .login-form {
+    display: grid;
+  }
+
+  .sign-main-con-g1 {
+    display: none;
+  }
+
+  .sign-top-btm {
+    padding: 80px 80px;
+  }
+
+  .sign-main-form button {
+    padding: 10px 35px;
+  }
+
+  .sign-check-con p {
+    margin: 10px;
+  }
+
+  .job-search {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: center;
+    justify-items: center;
+  }
+  .job-search input {
+    width: 300px;
+    margin: 10px;
+  }
+  .job-search select {
+    width: 324px;
+    padding: 10px;
+    margin: 10px;
+  }
+  .job-search button {
+    width: 300px;
+    margin: 10px;
+  }
+
+  .jobs-grid {
+    grid-template-columns: auto;
+  }
+
+  .job-details {
+    grid-template-columns: auto;
+    grid-gap: 0;
+    justify-content: center;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .job-search {
+    display: grid;
+    grid-template-columns: auto;
+  }
+  .job-search input {
+    margin: 5px;
+  }
+  .job-search select {
+    margin: 5px;
+  }
+  .job-search button {
+    margin: 5px 0;
+  }
+
+  .job-con-grid {
+    grid-template-columns: auto;
+  }
+  .job-con-grid p {
+    margin-top: 0;
+  }
+}
+@media only screen and (max-width: 600px) {
+  body {
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  p {
+    font-size: 16px;
+  }
+
+  h4 {
+    font-size: 18px;
+  }
+
+  .nav-grid {
+    display: none;
+  }
+
+  .con {
+    padding: 50px 30px;
+    width: auto;
+  }
+
+  .main-img {
+    width: 80%;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .btn-group {
+    display: grid;
+    grid-template-columns: auto;
+    padding: 30px 10px;
+  }
+  .btn-group .btn-outline {
+    margin: 5px 0;
+  }
+  .btn-group .btn-pink {
+    margin: 5px 0;
+  }
+
+  .job-cat-group {
+    grid-template-columns: auto;
+  }
+
+  .newsletter form {
+    display: grid;
+  }
+  .newsletter input {
+    padding: 10px 5px;
+  }
+
+  .con-sign {
+    padding: 30px 5px;
+  }
+
+  .sign-con {
+    margin: 0 10px;
+    padding: 20px 20px;
+  }
+  .sign-con h1 {
+    font-size: 24px;
+    margin-bottom: 5px;
+  }
+
+  .sign-main-con {
+    grid-template-columns: auto;
+  }
+
+  .sign-top-btm {
+    padding: 80px 10px;
+  }
+
+  .jobs-grid {
+    padding: 10px;
+  }
+}
+@media only screen and (max-width: 400px) {
+  .sign-form {
+    display: block;
+  }
+  .sign-form input {
+    width: 80%;
+    font-size: 16px;
+    padding: 10px 10px;
+  }
+  .sign-form .check {
+    width: auto;
+  }
+
+  .job-search-con {
+    padding: 0 10px;
+  }
+
+  .job-search input {
+    width: 92%;
+  }
+  .job-search select {
+    width: 100%;
+  }
+  .job-search button {
+    width: 100%;
+  }
+}
+
+/*# sourceMappingURL=main.css.map */

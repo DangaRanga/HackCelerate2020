@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/main.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Home</title>
+</head>
+<body>
+    <nav class="con nav-grid">
+        <span class="logo"><a href="{{ url_for('index') }}">Remoteja</a></span>
+        <span class="nav-links">
+            <a href="" class="link">Home</a>
+            <a href="" class="link">About</a>
+            <a href="" class="link">How It Works</a>
+            <a href="" class="link act-link">Jobs</a>
+        </span>
+        <span class="nav-btns">
+            <a href="" class="btn-pink">Login</a>
+            <a href="" class="btn-outline">Sign Up</a>
+        </span>
+    </nav>
+    <div class="job-search-con">
+        <form action="" method="post" class="job-search">
+            <input type="text" name="" id="" placeholder="Search...">
+            <select name="" id="">
+                <option value="oldest">Oldest First</option>
+                <option value="newest">Newest First</option>
+            </select>
+            <select name="" id="">
+                <option value="full-time">Full Time</option>
+                <option value="part-time">Part Time</option>
+                <option value="remote">Remote</option>
+            </select>
+            <button class="btn-pink">Search</button>
+        </form>
+    </div>
+    <div class="con jobs-grid">
+        <div class="jobs-list">
+            {% for job in jobs %}
+                <div class="job-con">
+                    <h2 class="job-title">Customer Representative</h2>
+                    <p class="company-title">Company.co</p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore porro doloremque ea quam in nostrum rem laudantium earum reprehenderit impedit. Culpa, cumque! Similique iusto, incidunt aspernatur explicabo numquam sit qui.</p>
+                    <div class="job-con-grid">
+                        <div class="date">
+                            <p>May 05, 2020</p>
+                        </div>
+                        <div class="spacer"></div>
+                        <div>
+                            <a href="" class="btn-pink">View Job</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="job-alert-con">
+            <div class="job-alert">
+                <h2 class="job-title">Job Alerts</h2>
+                <p>Sign up to receive job alerts</p>
+                <form action="" method="post" class="">
+                    <input type="text" name="" id="" placeholder="Search...">
+                    <button class="btn-pink">Search</button>
+                </form>
+    
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer>
+        <div class="con"></div>
+    </footer>
+</body>
+</html>
