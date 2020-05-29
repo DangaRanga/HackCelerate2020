@@ -1,9 +1,12 @@
 """The flask server."""
 from datetime import datetime
-from flask import Flask, render_template, url_for, redirect
-from forms.auth_forms import LoginForm, EmployeeSignUp
+from flask import Flask, flash, render_template, url_for, redirect
+from flask_bcrypt import Bcrypt
 from flask_sqlalchemy import SQLAlchemy
+from forms.auth_forms import LoginForm, EmployeeSignUp
+
 from config.config import Config
+
 
 # -----------------------------------------------------------------------------#
 #                          Initialize components
@@ -12,6 +15,7 @@ from config.config import Config
 config = Config()
 app = Flask(__name__)
 db = SQLAlchemy(app)
+bcrypt = Bcrypt(app)
 config.set_config(app)
 
 #-----------------------------------------------------------------------------#
@@ -29,6 +33,7 @@ def index():
 def login():
     form = LoginForm()
     if form.validate_on_submit():
+        flash('Successful login', 'success')
         return redirect(url_for('index'))
     return render_template('login.html', title='login', form=form)
 
@@ -37,7 +42,16 @@ def login():
 def employee_signup():
     form = EmployeeSignUp()
     if form.validate_on_submit():
-        return redirect(url_for('index'))
+        hashed_password = bcrypt.generate_password_hash(
+            form.password.data).decode('utf-8')
+        employee = Employee(f_name='form.first_name.data',
+                            l_name='form.last_name.data',
+                            email='form.email.data',
+                            password=hashed_password)
+        db.session.add(employee)
+        db.session.commit()
+        flash(f'Account created for {form.email.data}!', 'success')
+        return redirect(url_for('/login'))
     return render_template('employee_signup.html', title='signup', form=form)
 
 # -----------------------------------------------------------------------------#
