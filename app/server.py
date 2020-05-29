@@ -20,6 +20,7 @@ config.set_config(app)
 
 
 @app.route('/')
+@app.route('/home')
 def index():
     """Route for index.html."""
     return render_template("index.html")
@@ -29,16 +30,37 @@ def index():
 def login():
     form = LoginForm()
     if form.validate_on_submit():
-        return redirect(url_for('index'))
+        return redirect(url_for('login'))
     return render_template('login.html', title='login', form=form)
 
 
-@app.route('/employee_signup', methods=['GET', 'POST'])
+@app.route('/employee_sign_up', methods=['GET', 'POST'])
 def employee_signup():
     form = EmployeeSignUp()
     if form.validate_on_submit():
         return redirect(url_for('index'))
-    return render_template('employee_signup.html', title='signup', form=form)
+    return render_template('employee-sign.html', title='signup', form=form)
+
+@app.route('/employeer_sign_up')
+def esign():
+    return render_template('employer-sign.html')
+
+@app.route('/sign-up')
+def signup():
+    return render_template('sign-up.html')
+
+@app.route('/jobs')
+def jobs():
+    jobs = [1,2,3,4,5]
+    return render_template('jobs.html', jobs=jobs) 
+
+@app.route('/view-job')
+def view_job():
+    return render_template('view-job.html')
+
+@app.route('/upload-job')
+def upload_job():
+    return render_template('upload-job.html')
 
 # -----------------------------------------------------------------------------#
 #                          Database Models

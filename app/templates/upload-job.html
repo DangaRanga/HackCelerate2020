@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/main.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+    <nav class="con nav-grid">
+        <span class="logo"><a href="{{ url_for('index') }}">Remoteja</a></span>
+        <span class="nav-links">
+            <a href="" class="link act-link">Home</a>
+            <a href="" class="link">About</a>
+            <a href="" class="link">How It Works</a>
+            <a href="" class="link">Jobs</a>
+        </span>
+        <span class="nav-btns">
+            <a href="" class="btn-pink">Login</a>
+            <a href="" class="btn-outline">Sign Up</a>
+        </span>
+    </nav>
+
+    <form action="" method="post" class="sign-form">
+        <input type="email" name="" id="" placeholder="Company Email">
+        <input type="text" name="" id="" placeholder="Company Name">
+        <input type="text" name="" id="" placeholder="Company Registration No">
+        <input type="password" name="" id="" placeholder="Password">
+        <input type="password" name="" id="" placeholder="Confirm Password">
+        <div class="terms-con">
+            <input type="checkbox" name="terms" id="" value="" class="check">
+            <label for="terms">By clicking you agree to our <a href="">terms and services</a></label>
+        </div>
+        <button class="btn-pink">Sign Up</button>
+    </form>
+    <!-- Footer -->
+    <footer>
+        <div class="con"></div>
+    </footer>
+</body>
+</html>
