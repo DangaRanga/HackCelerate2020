@@ -1,16 +1,17 @@
 import email_validator
-from flask_wtf import FlaskForm,RecaptchaField
+from flask_wtf import FlaskForm, RecaptchaField
 from wtforms import StringField, SubmitField, PasswordField, BooleanField
-from wtforms.validators import InputRequired, Length,Email,EqualTo
+from wtforms.validators import InputRequired, Email, EqualTo
+
 
 class LoginForm(FlaskForm):
     """Class representing a login form."""
     email = StringField('Email',
-    validators =[
-        Email('Please enter a valid email address'),
-        InputRequired('Please enter your email address')])
+                        validators=[
+                            Email('Please enter a valid email address'),
+                            InputRequired('Please enter your email address')])
 
-    password = PasswordField('Password',[
+    password = PasswordField('Password', [
         InputRequired('Please enter your password')
     ])
     remember = BooleanField('Remember me')
@@ -20,24 +21,25 @@ class LoginForm(FlaskForm):
 class EmployeeSignUp(FlaskForm):
     """Class representing an employee sign up form."""
     email = StringField('Email',
-    validators=[
-        Email('Please enter a valid email address'),
-        InputRequired('Please enter your email address')])
+                        validators=[
+                            Email('Please enter a valid email address'),
+                            InputRequired('Please enter your email address')])
     first_name = StringField('First Name',
-        validators=[
-            InputRequired('Please enter your first name')])
+                             validators=[
+                                 InputRequired('Please enter your first name'
+                                               )])
     last_name = StringField('Last Name',
-    validators=[
-        InputRequired('Please enter your last name')])
+                            validators=[
+                                InputRequired('Please enter your last name')])
 
     password = PasswordField('Password',
-    validators=[
-        InputRequired('Please enter your password')])
+                             validators=[
+                                 InputRequired('Please enter your password')])
 
     confirm_password = PasswordField('Confirm password',
-    validators=[
-        InputRequired(),
-        EqualTo('password')
-    ])
+                                     validators=[
+                                         InputRequired(),
+                                         EqualTo('password')
+                                     ])
     recaptcha = RecaptchaField()
     submit = SubmitField('Sign up')
