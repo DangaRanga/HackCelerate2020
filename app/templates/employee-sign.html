@@ -6,7 +6,9 @@ Employee Sign Up
 
 {% block body %}
 <h1 class="sign-title">Employee Sign Up</h1>
-<form method="post" class="sign-form", id="#employee-form">
+<form action="" method="POST" class="sign-form", id="#employee-form">
+    {{ form.hidden_tag() }}
+    {{ form.csrf_token }}
     {{form.email(placeholder="Email")}}
         {% if form.email.errors%}
             {%for error in form.email.errors%}
@@ -21,6 +23,6 @@ Employee Sign Up
         <input type="checkbox" name="terms" id="" value="" class="check" required>
         <label for="terms">By clicking you agree to our <a href="">terms and services</a></label>
     </div>
-    <button class="btn-pink" id="submit-button" type="submit">Sign Up</button>
+    <button class="btn-pink" id="submit-button">Sign Up</button>
 </form>
 {% endblock %}

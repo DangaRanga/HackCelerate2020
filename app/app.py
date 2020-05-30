@@ -3,8 +3,8 @@ from datetime import datetime
 from flask import Flask, flash, render_template, url_for, redirect, request
 from flask_bcrypt import Bcrypt
 from flask_sqlalchemy import SQLAlchemy
-from .forms.auth_forms import LoginForm, EmployeeSignUp
-from .config.config import Config
+from forms.auth_forms import LoginForm, EmployeeSignUp
+from config.config import Config
 
 
 # -----------------------------------------------------------------------------#
@@ -43,10 +43,10 @@ def login():
 
 @app.route('/employee-sign', methods=['GET', 'POST'])
 def employee_signup():
-    form = EmployeeSignUp() if request.method == 'POST' else EmployeeSignUp(request.args)
-    if form.validate_on_submit():
+    form = EmployeeSignUp()
+    if request.method == "POST" and form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(
-            form.data['password']).decode('utf-8')
+            form.data.password).decode('utf-8')
         employee = Employee(f_name=form.first_name.data,
                             l_name=form.last_name.data,
                             email=form.email.data,
@@ -55,6 +55,8 @@ def employee_signup():
         db.session.commit()
         flash(f'Account created for {form.email.data}!', 'success')
         return redirect(url_for('index'))
+    else:
+        print(form.validate_on_submit())
     return render_template('employee-sign.html', title='signup', form=form)
 
 
