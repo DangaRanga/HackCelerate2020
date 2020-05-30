@@ -1,0 +1,28 @@
+{% extends "sign-log-layout.html" %}
+
+{% block title %} 
+Employer Sign Up
+{% endblock %}
+
+{% block body %}
+<div class="login-con">
+    <h1 class="sign-title">Welcome Back</h1>
+    <form method="post" class="sign-form login-form">
+        {{ form.hidden_tag() }}
+        {{form.email(placeholder="Email")}}
+        {{form.company_name(placeholder="Company Name")}}
+        {% if form.email.errors%}
+            {%for error in form.email.errors%}
+                <p class="error">*{{ error }}</p>
+            {% endfor %}
+        {% endif %}  
+        {{form.password(placeholder="Password")}}
+        {% if form.password.errors%}
+            {%for error in form.email.password%}
+                <p class="error">*{{ error }}</p>
+            {% endfor %}
+        {% endif %}  
+        <button class="btn-pink">Login</button>
+    </form>
+</div>
+{% endblock %}

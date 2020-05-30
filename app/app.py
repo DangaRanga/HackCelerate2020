@@ -3,8 +3,11 @@ import os
 from datetime import datetime
 from flask import Flask, flash, render_template, url_for, redirect, request
 from flask_bcrypt import Bcrypt
+from flask_login import UserMixin
+from flask_login import LoginManager
+from flask_login import login_user
 from flask_sqlalchemy import SQLAlchemy
-from .forms.auth_forms import LoginForm, EmployeeSignUp
+from .forms.auth_forms import LoginForm, EmployerLoginForm, EmployeeSignUp, EmployerSignUp
 from .config.config import Config
 from flask_wtf.csrf import CSRFProtect
 
@@ -19,10 +22,15 @@ app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///remoteja.db"
 secret_key = os.urandom(28)
 app.config['WTF_CSRF_SECRET_KEY'] = os.urandom(28)
 app.config['SECRET_KEY'] = secret_key
+# Configure db
 db = SQLAlchemy(app)
+# Configure Bcrypt for password hashw
 bcrypt = Bcrypt(app)
 config.set_config(app)
+# Set up CSRF Protection
 csrf = CSRFProtect(app)
+# Initialize login manager
+login_manager = LoginManager(app)
 
 
 #-----------------------------------------------------------------------------#
@@ -41,12 +49,37 @@ def index():
 def login():
     form = LoginForm()
     if form.validate_on_submit():
-        flash('Successful login', 'success')
-        return redirect(url_for('index'))
+        employee = Employee.query.filter_by(email=form.email.data).first()
+        employer = Employer.query.filter_by(email=form.email.data).first()
+        if employee and bcrypt.check_password_hash(employee.password, form.password.data):
+            # Consider using remember me
+            login_user(employee)
+            flash('Successful login', 'success')
+            return redirect(url_for('jobs'))
+            # TODO - Add employees and employers under the same table
+            # This is a highly inefficient method of logging in the user
+        elif employer and bcrypt.check_password_hash(employer.password, form.password.data):
+            login_user(employer)
+            flash('Successful login', 'success')
+            return redirect(url_for('index'))
+        else:
+            flash('Login unsuccessful. Please check email and password')
+
     else:
         print(form.validate_on_submit())
         print(form.errors)
     return render_template('login.html', title='login', form=form)
+
+
+@app.route('/employer-login', methods=['GET', 'POST'])
+def employer_login():
+    form = EmployerLoginForm()
+    if form.validate_on_submit():
+        return redirect(url_for('upload_job'))
+    else:
+        print(form.validate_on_submit())
+        print(form.errors)
+    return render_template('employer_login.html', form=form, title='employer_login')
 
 
 @app.route('/employee-sign', methods=['GET', 'POST'])
@@ -72,6 +105,10 @@ def employee_signup():
 
 @app.route('/employeer_sign_up')
 def esign():
+    form = EmployeeSignUp() if request.method == 'POST' else EmployeeSignUp(request.args)
+    if request.method == "POST" and form.validate_on_submit():
+        pass
+
     return render_template('employer-sign.html')
 
 
@@ -100,7 +137,16 @@ def upload_job():
 # -----------------------------------------------------------------------------#
 
 
-class Employee(db.Model):
+@login_manager.user_loader
+def load_employee(user_id):
+    return Employee.query.get(int(user_id))
+
+
+@login_manager.user_loader
+def load_employer(user_id):
+    return Employer.query.get(int(user_id))
+
+class Employee(db.Model, UserMixin):
     """Class representing an Employee."""
 
     id = db.Column(db.Integer, primary_key=True)
@@ -115,7 +161,7 @@ class Employee(db.Model):
         return f"Employee('{self.email}','{self.f_name}','{self.l_name}')"
 
 
-class Employer(db.Model):
+class Employer(db.Model, UserMixin):
     """Class representing an Employer"""
 
     id = db.Column(db.Integer, primary_key=True)
@@ -129,14 +175,19 @@ class Employer(db.Model):
         return f"Employer('{self.email}','{self.company}')"
 
 
-class JobPost(db.Model):
+class JobPost(db.Model, UserMixin):
     """Class representing a JobPost."""
 
     post_no = db.Column(db.Integer, primary_key=True)
     job_title = db.Column(db.String(20), nullable=False)
+    job_type = db.Column(db.String(15), nullable=False)
+    job_category = db.Column(db.String(15), nullable=False)
+    job_location = db.Column(db.String(30), nullable=False)
     date_posted = db.Column(db.DateTime, nullable=False,
                             default=datetime.utcnow())
-    post_description = db.Column(db.String(120), nullable=False)
+    job_description = db.Column(db.String(120), nullable=False)
+    additional_information = db.Column(db.String(90), nullable=False,
+                                       default="No additional information")
     employer_id = db.Column(db.Integer, db.ForeignKey(
         'employer.id'), nullable=False)
 

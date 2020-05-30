@@ -10,9 +10,6 @@ class Config:
 
     def set_config(self, app):
         """Set the config for the Flask app."""
-        #secret_key = os.urandom(64)
-        #sqlalchemy_database_uri = os.environ['DATABASE_URL']
-       # app.config['SECRET_KEY'] = secret_key
         app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///remoteja.db"
         app.config['SQL_ALCHEMY_ECHO'] = True
         app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False

@@ -13,9 +13,9 @@
         <span class="logo"><a href="{{ url_for('index') }}">Remoteja</a></span>
         <span class="nav-links">
             <a href="" class="link act-link">Home</a>
-            <a href="" class="link">About</a>
-            <a href="" class="link">How It Works</a>
-            <a href="" class="link">Jobs</a>
+            <a href="{{ url_for('index',_anchor='about') }}" class="link">About</a>
+            <a href="{{ url_for('index', _anchor='howitwrks') }}" class="link">How It Works</a>
+            <a href="{{ url_for('jobs') }}" class="link">Jobs</a>
         </span>
         <span class="nav-btns">
             <a href="{{ url_for('login')}}" class="btn-pink">Login</a>
@@ -46,7 +46,7 @@
             <div class="main-img">
                 <img src="{{ url_for('static', filename = 'res/work-remote.svg') }}" alt="">
             </div>
-            <section>
+            <section id="about">
                 <h1>About RemoteJa</h1>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam debitis reprehenderit aliquam, 
                     pariatur harum perspiciatis? Placeat eum, laboriosam delectus amet laudantium dignissimos omnis 
@@ -65,7 +65,7 @@
     
     <!-- How It Works Section-->
     <div class="con sec-left">
-        <section>
+        <section id="howitwrks"> 
             <h1>How RemoteJa Works</h1>
             <h4>Step 1</h4>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam debitis reprehenderit aliquam, 
