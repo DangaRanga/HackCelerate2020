@@ -1,7 +1,7 @@
 import email_validator
 from flask_wtf import FlaskForm, RecaptchaField
-from wtforms import StringField, SubmitField, PasswordField, BooleanField
-from wtforms.validators import InputRequired, DataRequired, Email, EqualTo, ValidationError
+from wtforms import StringField, SubmitField, PasswordField, BooleanField,  SelectField, TextAreaField
+from wtforms.validators import InputRequired, DataRequired, Email, EqualTo, ValidationError, Length
 
 
 class EmployerLoginForm(FlaskForm):
@@ -34,6 +34,7 @@ class LoginForm(FlaskForm):
     ])
     remember = BooleanField('Remember me')
     submit = SubmitField('Login')
+
 
 class EmployeeSignUp(FlaskForm):
     """Class representing an employee sign up form."""
@@ -93,12 +94,37 @@ class EmployerSignUp(FlaskForm):
             raise ValidationError(
                 'That email address is taken, please choose another.')
 
-    class RegisterJobPost(FlaskForm):
-        job_title = StringField('Job Title',
-                                validators=[
-                                    InputRequired()
-                                ])
-        job_type = StringField('Job Type',
+
+class RegisterJobPost(FlaskForm):
+    company = StringField('Company',
+                        validators=[InputRequired()])
+    job_title = StringField('Job Title',
+                            validators=[
+                                InputRequired()
+                            ])
+    job_location = StringField('Job location',
                                validators=[
-                                   InputRequired()
+                                   InputRequired(),
                                ])
+    job_type = SelectField('Job Type',
+                           choices=[
+                               ('full-time', 'Full Time'),
+                               ('part-time', 'Part Time'),
+                               ('remote', 'Remote'),
+                               ('contract', 'Contract')
+                           ])
+    job_category = SelectField('Job Category',
+                               choices=[
+                                   ('health', 'Health'),
+                                   ('technology', 'Technology'),
+                                   ('agriculture', 'Agriculture'),
+                                   ('retail', 'Retail'),
+                                   ('cus-services', 'Customer Services')
+                               ])
+    job_description = TextAreaField('Enter a short description of the job', render_kw={
+        "rows": 8, "cols": 50
+    })
+    additional_information = TextAreaField('Enter additional information', render_kw={
+        "rows": 8, "cols": 50
+    })
+    submit = SubmitField('Submit Job')

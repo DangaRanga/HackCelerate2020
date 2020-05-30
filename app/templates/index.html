@@ -43,7 +43,7 @@
                 inventore perferendis explicabo? Voluptatibus nobis maxime magni.</p>
             <div class="btn-group">
                 <a href="{{url_for('jobs')}}" class="btn-pink">Browse</a>
-                <a href="{{url_for('')}}" class="btn-outline">Post a job</a>
+                <a href="{{url_for('upload_job')}}" class="btn-outline">Post a job</a>
             </div>
         </section>
         <div class="main-img">
@@ -68,7 +68,7 @@
                     inventore perferendis explicabo? Voluptatibus nobis maxime magni. 
                 </p>
                 <div class="btn-group">
-                    <a href="" class="btn-pink">Sign Up</a>
+                    <a href="{{ url_for('signup') }}" class="btn-pink">Sign Up</a>
                 </div>
             </section>
         </div>

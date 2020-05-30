@@ -7,7 +7,7 @@ from flask_login import UserMixin
 from flask_login import LoginManager
 from flask_login import login_user, current_user, logout_user
 from flask_sqlalchemy import SQLAlchemy
-from forms.auth_forms import LoginForm, EmployerLoginForm, EmployeeSignUp, EmployerSignUp
+from forms.auth_forms import LoginForm, EmployerLoginForm, EmployeeSignUp, EmployerSignUp, RegisterJobPost
 from config.config import Config
 from flask_wtf.csrf import CSRFProtect
 
@@ -147,16 +147,33 @@ def view_job():
     return render_template('view-job.html')
 
 
-@app.route('/upload-job')
+@app.route('/upload_job', methods=['GET', 'POST'])
 def upload_job():
-    return render_template('upload-job.html')
+    form = RegisterJobPost() if request.method == 'POST' else RegisterJobPost(request.args)
+    if request.method == "POST" and form.validate_on_submit():
+        employer = Employer.query.filter_by(company=form.company.data).first()
+
+        job_post = JobPost(job_title=form.job_title.data,
+                           job_type=form.job_type.data,
+                           job_category=form.job_category.data,
+                           job_location=form.job_location.data,
+                           job_description=form.job_description.data,
+                           additional_information=form.additional_information.data,
+                           employer_id=employer.id)
+        db.session.add(job_post)
+        db.session.commit()
+        return redirect(url_for('jobs'))
+    else:
+        print(form.validate())
+        print(form.errors)
+    return render_template('upload-job.html', form=form)
 
 # -----------------------------------------------------------------------------#
 #                          Database Models
 # -----------------------------------------------------------------------------#
 
 
-@login_manager.user_loader
+@ login_manager.user_loader
 def load_employee(user_id):
     return Employee.query.get(int(user_id))
 
