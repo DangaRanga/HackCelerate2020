@@ -7,8 +7,8 @@ from flask_login import UserMixin
 from flask_login import LoginManager
 from flask_login import login_user, current_user, logout_user
 from flask_sqlalchemy import SQLAlchemy
-from .forms.auth_forms import LoginForm, EmployerLoginForm, EmployeeSignUp, EmployerSignUp, RegisterJobPost
-from .config.config import Config
+from forms.auth_forms import LoginForm, EmployerLoginForm, EmployeeSignUp, EmployerSignUp, RegisterJobPost
+from config.config import Config
 from flask_wtf.csrf import CSRFProtect
 
 
@@ -139,7 +139,7 @@ def signup():
         emp = request.form['emptype']
         if emp == 'employee':
             redirect(url_for('employee_signup'))
-        else:
+        elif emp == 'employer':
             redirect(url_for('esign'))
     return render_template('sign-up.html', form=form)
 
