@@ -133,13 +133,14 @@ def esign():
 
 @app.route('/sign-up', methods=['GET', 'POST'])
 def signup():
+    form = EmployerSignUp()
     if request.method == "POST":
         emp = request.form['emptype']
         if emp == 'employee':
             redirect(url_for('employee_signup'))
         else:
             redirect(url_for('esign'))
-    return render_template('sign-up.html')
+    return render_template('sign-up.html', form=form)
 
 
 @app.route('/jobs')
