@@ -7,8 +7,8 @@ from flask_login import UserMixin
 from flask_login import LoginManager
 from flask_login import login_user, current_user, logout_user
 from flask_sqlalchemy import SQLAlchemy
-from forms.auth_forms import LoginForm, EmployerLoginForm, EmployeeSignUp, EmployerSignUp, RegisterJobPost
-from config.config import Config
+from .forms.auth_forms import LoginForm, EmployerLoginForm, EmployeeSignUp, EmployerSignUp, RegisterJobPost
+from .config.config import Config
 from flask_wtf.csrf import CSRFProtect
 
 
@@ -42,7 +42,8 @@ login_manager = LoginManager(app)
 @app.route('/home')
 def index():
     """Route for index.html."""
-    return render_template("index.html")
+    categories = ['Health','Technology','Agriculture','Retail','Customer Services']
+    return render_template("index.html", categories=categories)
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -86,7 +87,7 @@ def employer_login():
     else:
         print(form.validate_on_submit())
         print(form.errors)
-    return render_template('employer_login.html', form=form, title='employer_login')
+    return render_template('employer_login.html', form=form, title='employer_login', login=True)
 
 
 @app.route('/employee-sign', methods=['GET', 'POST'])
@@ -131,9 +132,16 @@ def esign():
     return render_template('employer-sign.html', title='employer', form=form)
 
 
-@app.route('/sign-up')
+@app.route('/sign-up', methods=['GET', 'POST'])
 def signup():
-    return render_template('sign-up.html')
+    form = EmployerSignUp()
+    if request.method == "POST":
+        emp = request.form['emptype']
+        if emp == 'employee':
+            redirect(url_for('employee_signup'))
+        else:
+            redirect(url_for('esign'))
+    return render_template('sign-up.html', form=form)
 
 
 @app.route('/jobs')

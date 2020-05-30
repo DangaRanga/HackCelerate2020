@@ -38,9 +38,9 @@
     <div class="con sec-left">
         <section id="landing">
             <h1>Don't let COVID-19 stop you from working</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam debitis reprehenderit aliquam, 
-                pariatur harum perspiciatis? Placeat eum, laboriosam delectus amet laudantium dignissimos omnis 
-                inventore perferendis explicabo? Voluptatibus nobis maxime magni.</p>
+            <p>Are you trying to obtain employment after COVID-19? Or just seeking alternative sources of
+                income? Allow RemoteJa to assist you in making your employment search easier.
+            </p>
             <div class="btn-group">
                 <a href="{{url_for('jobs')}}" class="btn-pink">Browse</a>
                 <a href="{{url_for('upload_job')}}" class="btn-outline">Post a job</a>
@@ -59,13 +59,11 @@
             </div>
             <section id="about">
                 <h1>About RemoteJa</h1>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam debitis reprehenderit aliquam, 
-                    pariatur harum perspiciatis? Placeat eum, laboriosam delectus amet laudantium dignissimos omnis 
-                    inventore perferendis explicabo? Voluptatibus nobis maxime magni.</p>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam debitis reprehenderit aliquam, 
-                    pariatur harum perspiciatis? Placeat eum, laboriosam delectus amet laudantium dignissimos omnis 
-                    inventore perferendis explicabo? Voluptatibus nobis maxime magni. 
+                <p>Transforming obstacles into opportunities. It is this belief that forms the core of our
+                    focus to deliver a solution for our citizens, we aim to enable the employers and jobseekers
+                    alike to improve their success rate of finding an ideal fit. Our website is tailored to 
+                    offer a wide range of employment opportunities accompanied with a detailed yet user-friendly
+                    interface.
                 </p>
                 <div class="btn-group">
                     <a href="{{ url_for('signup') }}" class="btn-pink">Sign Up</a>
@@ -79,16 +77,11 @@
         <section id="howitwrks">
             <h1>How RemoteJa Works</h1>
             <h4>Step 1</h4>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam debitis reprehenderit aliquam, 
-                pariatur harum perspiciatis? Placeat eum, laboriosam delectus amet laudantium dignissimos omnis 
-                inventore perferendis explicabo? Voluptatibus nobis maxime magni.</p>
+            <p>Kick start your journey to employment by signing up.</p>
             <h4>Step 2</h4>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam debitis reprehenderit aliquam, 
-                pariatur harum perspiciatis? Placeat eum.</p>
+            <p>Filter your search details to view the most suitable vacancies for you</p>
             <h4>Step 3</h4>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam debitis reprehenderit aliquam, 
-                pariatur harum perspiciatis? Placeat eum, laboriosam delectus amet laudantium dignissimos omnis 
-                inventore perferendis explicabo? Voluptatibus nobis maxime magni.</p>
+            <p>Fill out the required information to apply for the job!</p>
         </section>
         <div class="main-img">
             <img src="{{ url_for('static', filename = 'res/work-resume.svg') }}" alt="">
@@ -98,13 +91,15 @@
     <!-- Jobs By Category -->
     <div class="color-con">
         <div class="con">
-            <h1>Remote Jobs By Category</h1>
+            <h1>Jobs By Category</h1>
             <div class="job-cat-group">
                 {% for cat in categories %}
-                <div class="cat-con">
-                    <h4>Health</h4>
-                    <p>20 Jobs Available</p>
-                </div>
+                <a href="{{ url_for('jobs')}}">
+                    <div class="cat-con">
+                        <h4>{{ cat }}</h4>
+                        <p>20 Jobs Available</p>
+                    </div>
+                </a>
                 {% endfor %}
             </div>
         </div>
@@ -113,14 +108,13 @@
     <!-- Newsletter -->
     <div class="con newsletter">
         <h1>Newsletter</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <p>Sign up for our newsletter today!</p>
         <form action="" method="post">
             <input type="email" name="" id="" placeholder="Email">
             <button>Submit</button>
         </form>
     </div>
 
-    <!-- Footer -->
     <!-- Footer -->
     <footer>
         <div class="con"></div>

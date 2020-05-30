@@ -11,7 +11,7 @@
     <div class="sign-main-con">
         <div class="color-con sign-main-con-g1">
         <div class="con">
-            <span class="logo logo-inverse"><a href="">Remoteja</a></span>
+            <span class="logo logo-inverse"><a href="">RemoteJa</a></span>
         </div>
         <div class="sign-pad">
             <div class="main-img sign-img">
@@ -28,18 +28,21 @@
             </div>
             <div class="sign-top-btm">
                 <h1>Signing up is a quick and simple process.</h1>
-                <form action="" method="post" class="sign-main-form">
+                <form action="{{ url_for('signup') }}" method="post" class="sign-main-form">
+                    {{ form.csrf_token }}
                     <div class="sign-check-con">
-                        <input type="radio" name="terms" id="" value="" class="check">
-                        <label for="terms">Employee Account</label>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat voluptates quibusdam, totam minus labore pariatur. 
-                            Sint modi et, enim aperiam, magnam quod molestias fugit quia minus facilis unde beatae nihil!</p>
+                        <input type="radio" name="emptype" id="" value="employee" class="check" required>
+                        <label for="emptype">Employee Account</label>
+                        <p>Begin  your journey to obtaining one or multiple sources of income by taking the 
+                            first step with RemoteJa today. Sign up and get started today with RemoteJa.
+                        </p>
                     </div>
                     <div class="sign-check-con">
-                        <input type="radio" name="terms" id="" value="" class="check">
-                        <label for="terms">Employer Account</label>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                            Harum officiis fuga impedit quos animi eligendi soluta vitae rerum ad distinctio exercitationem, perspiciatis sit, illo ex omnis! Officia nam aut excepturi!</p>
+                        <input type="radio" name="emptype" id="" value="employer" class="check">
+                        <label for="emptype">Employer Account</label>
+                        <p>RemoteJa is equipped to assist you in the growth of your organization by enabling
+                            you to seek qualified individuals that may be the ideal fit for your organization.
+                            Create your free account today and post a job to get started.</p>
                     </div>
                     <button class="btn-pink">Sign Up</button>
                 </form>
