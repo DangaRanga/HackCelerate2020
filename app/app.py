@@ -4,8 +4,9 @@ from datetime import datetime
 from flask import Flask, flash, render_template, url_for, redirect, request
 from flask_bcrypt import Bcrypt
 from flask_sqlalchemy import SQLAlchemy
-from .forms.auth_forms import LoginForm, EmployeeSignUp
+from forms.auth_forms import LoginForm, EmployeeSignUp
 from .config.config import Config
+from .flask_wtf.csrf import CSRFProtect
 
 
 # -----------------------------------------------------------------------------#
@@ -15,11 +16,14 @@ from .config.config import Config
 config = Config()
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///remoteja.db"
-secret_key = os.urandom(64)
+secret_key = os.urandom(28)
+app.config['WTF_CSRF_SECRET_KEY'] = os.urandom(28)
 app.config['SECRET_KEY'] = secret_key
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 config.set_config(app)
+csrf = CSRFProtect(app)
+
 
 #-----------------------------------------------------------------------------#
 #                               Flask Routes
@@ -41,15 +45,17 @@ def login():
         return redirect(url_for('index'))
     else:
         print(form.validate_on_submit())
+        print(form.errors)
     return render_template('login.html', title='login', form=form)
 
 
 @app.route('/employee-sign', methods=['GET', 'POST'])
 def employee_signup():
-    form = EmployeeSignUp()
+    # form = EmployeeSignUp()
+    form = EmployeeSignUp() if request.method == 'POST' else EmployeeSignUp(request.args)
     if request.method == "POST" and form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(
-            form.data.password).decode('utf-8')
+            form.data['password']).decode('utf-8')
         employee = Employee(f_name=form.first_name.data,
                             l_name=form.last_name.data,
                             email=form.email.data,
@@ -59,8 +65,8 @@ def employee_signup():
         flash(f'Account created for {form.email.data}!', 'success')
         return redirect(url_for('index'))
     else:
-        print(form.validate_on_submit())
-        flash(form.errors)
+        print(form.validate())
+        print(form.errors)
     return render_template('employee-sign.html', title='signup', form=form)
 
 

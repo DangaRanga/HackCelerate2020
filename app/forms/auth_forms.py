@@ -38,5 +38,4 @@ class EmployeeSignUp(FlaskForm):
 
     confirm_password = PasswordField('Confirm password',
                                      validators=[InputRequired()])
-    recaptcha = RecaptchaField()
     submit = SubmitField('Sign Up')
