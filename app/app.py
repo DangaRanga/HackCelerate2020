@@ -141,7 +141,7 @@ def signup():
         emp = request.form['emptype']
         if emp == 'employee':
             redirect(url_for('employee_signup'))
-        else:
+        elif emp == 'employer':
             redirect(url_for('esign'))
     return render_template('sign-up.html', form=form)
 
