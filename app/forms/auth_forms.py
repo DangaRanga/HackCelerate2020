@@ -1,7 +1,7 @@
 import email_validator
 from flask_wtf import FlaskForm, RecaptchaField
-from wtforms import StringField, SubmitField, PasswordField, BooleanField
-from wtforms.validators import InputRequired, Email, EqualTo
+from wtforms import StringField, SubmitField, PasswordField, BooleanField   
+from wtforms.validators import InputRequired, DataRequired, Email, EqualTo
 
 
 class LoginForm(FlaskForm):
@@ -23,23 +23,18 @@ class EmployeeSignUp(FlaskForm):
     email = StringField('Email',
                         validators=[
                             Email('Please enter a valid email address'),
-                            InputRequired('Please enter your email address')])
+                            DataRequired()])
     first_name = StringField('First Name',
                              validators=[
-                                 InputRequired('Please enter your first name'
-                                               )])
+                                 DataRequired()])
     last_name = StringField('Last Name',
                             validators=[
-                                InputRequired('Please enter your last name')])
+                                DataRequired()])
 
     password = PasswordField('Password',
                              validators=[
-                                 InputRequired('Please enter your password')])
+                                 DataRequired()])
 
-    confirm_password = PasswordField('Confirm password',
-                                     validators=[
-                                         InputRequired(),
-                                         EqualTo('password')
-                                     ])
+    confirm_password = PasswordField('Confirm password')
     recaptcha = RecaptchaField()
-    submit = SubmitField('Sign up')
+    submit = SubmitField('Sign Up')
