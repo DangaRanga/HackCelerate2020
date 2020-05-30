@@ -1,6 +1,6 @@
 {% extends "sign-log-layout.html" %}
 
-{% block title %} 
+{% block title %}
 Employee Sign Up
 {% endblock %}
 
@@ -14,13 +14,22 @@ Employee Sign Up
             {%for error in form.email.errors%}
                 <p class="error">*{{ error }}</p>
             {% endfor %}
-        {% endif %}  
+        {% endif %}
         {{form.password(placeholder="Password")}}
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class=flashes>
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
         {% if form.password.errors%}
-            {%for error in form.email.password%}
-                <p class="error">*{{ error }}</p>
-            {% endfor %}
-        {% endif %}  
+        {%for error in form.email.password%}
+        <p class="error">*{{ error }}</p>
+        {% endfor %}
+        {% endif %}
         <button class="btn-pink">Login</button>
     </form>
 </div>

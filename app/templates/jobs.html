@@ -17,8 +17,19 @@
             <a href="" class="link act-link">Jobs</a>
         </span>
         <span class="nav-btns">
-            <a href="" class="btn-pink">Login</a>
-            <a href="" class="btn-outline">Sign Up</a>
+            {% if current_user.is_authenticated %}
+                <a href="{{ url_for('logout')}}" class="btn-pink">Logout</a>
+            {% else %}
+                <a href="{{ url_for('login')}}" class="btn-pink">Login</a>
+                <a href="{{ url_for('signup') }}" class="btn-outline">Sign Up</a>
+            {% endif %}
+        </span>
+        <span class="nav-menu">
+            <a href="">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </a>
         </span>
     </nav>
     <div class="job-search-con">
