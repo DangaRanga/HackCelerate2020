@@ -21,19 +21,42 @@
             <a href="" class="btn-outline">Sign Up</a>
         </span>
     </nav>
+    <div class="con">
+        
+        <form action="" method="post" class="upload-form">
+            <h2>Post a Job</h2>
 
-    <form action="" method="post" class="sign-form">
-        <input type="email" name="" id="" placeholder="Company Email">
-        <input type="text" name="" id="" placeholder="Company Name">
-        <input type="text" name="" id="" placeholder="Company Registration No">
-        <input type="password" name="" id="" placeholder="Password">
-        <input type="password" name="" id="" placeholder="Confirm Password">
-        <div class="terms-con">
-            <input type="checkbox" name="terms" id="" value="" class="check">
-            <label for="terms">By clicking you agree to our <a href="">terms and services</a></label>
-        </div>
-        <button class="btn-pink">Sign Up</button>
-    </form>
+            <label for="">Job Title</label>
+            <input type="text" name="" id="" placeholder="Job Title">
+
+            <label for="">Job Location</label>
+            <input type="text" name="" id="" placeholder="Job Location">
+
+            <label for="">Job Type</label>
+            <select name="" id="">
+                <option value="full-time">Full Time</option>
+                <option value="part-time">Part Time</option>
+                <option value="remote">Remote</option>
+                <option value="contract">Contract</option>
+            </select>
+            <label for="">Job Category</label>
+            <select name="" id="">
+                <option value="health">Health</option>
+                <option value="technology">Technology</option>
+                <option value="agriculture">Agriculture</option>
+                <option value="retail">Retail</option>
+                <option value="cus-services">Customer Services</option>
+            </select>
+            <label for="">Job Description</label>
+            <p class="company-title">Enter a short job description to let your future employee know what the job entails.</p>
+            <textarea rows = "8" cols = "50" name = "description" placeholder="Enter a short description of the job"></textarea>
+            <label for="">Additional Information</label>
+            <p class="company-title">Enter any additional that you feel the employee should know (optional)</p>
+            <textarea rows = "5" cols = "50" name = "description" placeholder="Enter a short description of the job"></textarea>
+            <button class="btn-pink">Submit Job</button>
+        </form>
+    </div>
+    
     <!-- Footer -->
     <footer>
         <div class="con"></div>

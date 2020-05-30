@@ -79,6 +79,15 @@ a{
         align-items: center;
     }
 }
+.nav-menu{
+    display: none;
+    .line{
+        padding: 3px;
+        width: 35px;
+        margin: 5px;
+        background-color: $pink;
+    }
+}
 .btn{
     padding: 7px 35px;
     margin: 0 4px;
@@ -423,10 +432,47 @@ footer{
     justify-content: left;
     grid-gap: 20px;
 }
-
+.upload-form{
+    display: grid;
+    grid-template-columns: auto;
+    margin: 0 auto;
+    max-width: 700px;
+    color: $darker-blue;
+    input{
+        margin: 10px 0;
+        padding: 10px 5px;
+        font-size: 18px;
+        color: $darker-blue;
+    }
+    select{
+        margin: 10px 0;
+        padding: 10px 5px;
+        font-size: 18px;
+        color: $darker-blue;
+    }
+    textarea{
+        margin: 0 0 10px 0;
+        padding: 10px 5px;
+        font-size: 18px;
+        color: $darker-blue;
+    }
+}
 @media only screen and (max-width: 1080px){
     body{
         text-align: center;
+    }
+    .nav-grid{
+        text-align: left;
+        grid-template-columns: 90% auto;
+        .nav-links{
+            display: none;
+        }
+        .nav-btns{
+            display: none;
+        }
+        .nav-menu{
+            display: block;
+        }
     }
     .sign-main-con{
         grid-template-columns: auto;
@@ -564,9 +610,6 @@ footer{
     }
     h4{
         font-size: 18px;
-    }
-    .nav-grid{
-        display: none;
     }
     .con{
         padding: 50px 30px;
