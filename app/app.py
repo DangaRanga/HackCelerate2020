@@ -22,7 +22,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///remoteja.db"
 app.config['WTF_CSRF_SECRET_KEY'] = os.urandom(28)
 app.config['WTF_CSRF_ENABLED'] = True
 app.config['SECRET_KEY'] = os.urandom(28)
-app.config['SESSION_COOKIE_SECURE'] = True
+app.config['SERVER_NAME'] = 'remote-ja.herokuapp.com/'
 # Configure db
 db = SQLAlchemy(app)
 # Configure Bcrypt for password hashw
