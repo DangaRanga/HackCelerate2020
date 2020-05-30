@@ -94,10 +94,12 @@
             <h1>Jobs By Category</h1>
             <div class="job-cat-group">
                 {% for cat in categories %}
-                <div class="cat-con">
-                    <h4>Health</h4>
-                    <p>20 Jobs Available</p>
-                </div>
+                <a href="{{ url_for('jobs')}}">
+                    <div class="cat-con">
+                        <h4>{{ cat }}</h4>
+                        <p>20 Jobs Available</p>
+                    </div>
+                </a>
                 {% endfor %}
             </div>
         </div>

@@ -42,7 +42,8 @@ login_manager = LoginManager(app)
 @app.route('/home')
 def index():
     """Route for index.html."""
-    return render_template("index.html")
+    categories = ['Health','Technology','Agriculture','Retail','Customer Services']
+    return render_template("index.html", categories=categories)
 
 
 @app.route('/login', methods=['GET', 'POST'])
