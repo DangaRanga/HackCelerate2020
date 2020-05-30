@@ -1,5 +1,6 @@
 import email_validator
 from flask_wtf import FlaskForm, RecaptchaField
+from flask_bcrypt
 from wtforms import StringField, SubmitField, PasswordField, BooleanField
 from wtforms.validators import InputRequired, DataRequired, Email, EqualTo, ValidationError
 
@@ -34,6 +35,22 @@ class LoginForm(FlaskForm):
     ])
     remember = BooleanField('Remember me')
     submit = SubmitField('Login')
+
+    def validate_login(self, password, email):
+        """Used to validate email"""
+        from app import Employee
+        from app import Employer
+        from app import bcrypt
+        employee = Employee.query.filter_by(email=email.data).first()
+        employer = Employer.query.filter_by(email=email.data).first()
+
+        if employee is not None and bcrypt.check_password_hash(employee.password, password.data):
+            pass
+        elif employer is not None and bcrypt.check_password_hash(employer.password, password.data):
+            pass
+        else:
+            raise ValidationError(
+                'Invalid email address/password.')
 
 
 class EmployeeSignUp(FlaskForm):
