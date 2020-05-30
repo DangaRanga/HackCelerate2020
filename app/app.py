@@ -1,10 +1,11 @@
 """The flask server."""
+import os
 from datetime import datetime
 from flask import Flask, flash, render_template, url_for, redirect, request
 from flask_bcrypt import Bcrypt
 from flask_sqlalchemy import SQLAlchemy
-from forms.auth_forms import LoginForm, EmployeeSignUp
-from config.config import Config
+from .forms.auth_forms import LoginForm, EmployeeSignUp
+from .config.config import Config
 
 
 # -----------------------------------------------------------------------------#
@@ -14,6 +15,8 @@ from config.config import Config
 config = Config()
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///remoteja.db"
+secret_key = os.urandom(64)
+app.config['SECRET_KEY'] = secret_key
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 config.set_config(app)
@@ -57,6 +60,7 @@ def employee_signup():
         return redirect(url_for('index'))
     else:
         print(form.validate_on_submit())
+        flash(form.errors)
     return render_template('employee-sign.html', title='signup', form=form)
 
 

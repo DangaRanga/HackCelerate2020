@@ -6,7 +6,7 @@ Employee Sign Up
 
 {% block body %}
 <h1 class="sign-title">Employee Sign Up</h1>
-<form action="" method="POST" class="sign-form", id="#employee-form">
+<form action="" method="POST" class="sign-form">
     {{ form.hidden_tag() }}
     {{ form.csrf_token }}
     {{form.email(placeholder="Email")}}
