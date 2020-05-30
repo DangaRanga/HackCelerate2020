@@ -29,6 +29,7 @@
             <div class="sign-top-btm">
                 <h1>Signing up is a quick and simple process.</h1>
                 <form action="{{ url_for('signup') }}" method="post" class="sign-main-form">
+                    {{ form.csrf_token }}
                     <div class="sign-check-con">
                         <input type="radio" name="emptype" id="" value="employee" class="check" required>
                         <label for="emptype">Employee Account</label>
