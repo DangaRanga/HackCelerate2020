@@ -7,8 +7,8 @@ from flask_login import UserMixin
 from flask_login import LoginManager
 from flask_login import login_user, current_user, logout_user
 from flask_sqlalchemy import SQLAlchemy
-from forms.auth_forms import LoginForm, EmployerLoginForm, EmployeeSignUp, EmployerSignUp
-from config.config import Config
+from .forms.auth_forms import LoginForm, EmployerLoginForm, EmployeeSignUp, EmployerSignUp
+from .config.config import Config
 from flask_wtf.csrf import CSRFProtect
 
 
