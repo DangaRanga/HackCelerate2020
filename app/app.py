@@ -23,7 +23,7 @@ secret_key = os.urandom(28)
 app.config['WTF_CSRF_SECRET_KEY'] = os.urandom(28)
 app.config['WTF_CSRF_ENABLED'] = True
 app.config['SECRET_KEY'] = secret_key
-app.config['SESSION_COOKIE_SECURE'] = False
+app.config['SESSION_COOKIE_SECURE'] = True
 # Configure db
 db = SQLAlchemy(app)
 # Configure Bcrypt for password hashw
