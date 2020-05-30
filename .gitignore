@@ -1,3 +1,4 @@
 .vscode
 
 app/venv
+app/.env
