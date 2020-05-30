@@ -11,14 +11,23 @@
     <nav class="con nav-grid">
         <span class="logo"><a href="{{ url_for('index') }}">Remoteja</a></span>
         <span class="nav-links">
-            <a href="{{ url_for('index') }}" class="link act-link">Home</a>
-            <a href="{{ url_for('index',_anchor='about') }}" class="link">About</a>
-            <a href="{{ url_for('index', _anchor='howitwrks') }}" class="link">How It Works</a>
-            <a href="{{ url_for('jobs') }}" class="link">Jobs</a>
+            <a href="{{ url_for('index') }}" class="link">Home</a>
+            <a href="{{url_for('jobs')}}" class="link act-link">Jobs</a>
         </span>
         <span class="nav-btns">
-            <a href="{{ url_for('login')}}" class="btn-pink">Login</a>
-            <a href="{{ url_for('signup') }}" class="btn-outline">Sign Up</a>
+            {% if current_user.is_authenticated %}
+                <a href="{{ url_for('logout')}}" class="btn-pink">Logout</a>
+            {% else %}
+                <a href="{{ url_for('login')}}" class="btn-pink">Login</a>
+                <a href="{{ url_for('signup') }}" class="btn-outline">Sign Up</a>
+            {% endif %}
+        </span>
+        <span class="nav-menu">
+            <a href="">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </a>
         </span>
     </nav>
     <div class="con job-info-con">

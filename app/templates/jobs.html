@@ -5,16 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename = 'css/main.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <title>Home</title>
+    <title>RemoteJa - Jobs List</title>
 </head>
 <body>
     <nav class="con nav-grid">
         <span class="logo"><a href="{{ url_for('index') }}">Remoteja</a></span>
         <span class="nav-links">
             <a href="{{ url_for('index') }}" class="link">Home</a>
-            <a href="{{ url_for('index', _anchor='about') }}" class="link">About</a>
-            <a href="{{ url_for('index',anchor='howitwrks') }}" class="link">How It Works</a>
-            <a href="{{url_for('jobs')}}"" class="link act-link">Jobs</a>
+            <a href="{{url_for('jobs')}}" class="link act-link">Jobs</a>
         </span>
         <span class="nav-btns">
             {% if current_user.is_authenticated %}
