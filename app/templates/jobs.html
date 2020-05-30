@@ -11,10 +11,10 @@
     <nav class="con nav-grid">
         <span class="logo"><a href="{{ url_for('index') }}">Remoteja</a></span>
         <span class="nav-links">
-            <a href="" class="link">Home</a>
-            <a href="" class="link">About</a>
-            <a href="" class="link">How It Works</a>
-            <a href="" class="link act-link">Jobs</a>
+            <a href="{{ url_for('index') }}" class="link">Home</a>
+            <a href="{{ url_for('index', _anchor='about') }}" class="link">About</a>
+            <a href="{{ url_for('index',anchor='howitwrks') }}" class="link">How It Works</a>
+            <a href="{{url_for('jobs')}}"" class="link act-link">Jobs</a>
         </span>
         <span class="nav-btns">
             {% if current_user.is_authenticated %}

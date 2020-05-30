@@ -7,8 +7,8 @@ from flask_login import UserMixin
 from flask_login import LoginManager
 from flask_login import login_user, current_user, logout_user
 from flask_sqlalchemy import SQLAlchemy
-from .forms.auth_forms import LoginForm, EmployerLoginForm, EmployeeSignUp, EmployerSignUp
-from .config.config import Config
+from forms.auth_forms import LoginForm, EmployerLoginForm, EmployeeSignUp, EmployerSignUp
+from config.config import Config
 from flask_wtf.csrf import CSRFProtect
 
 
@@ -112,13 +112,23 @@ def employee_signup():
     return render_template('employee-sign.html', title='signup', form=form)
 
 
-@app.route('/employeer_sign_up')
+@app.route('/employer_sign_up', methods=['GET', 'POST'])
 def esign():
-    form = EmployeeSignUp() if request.method == 'POST' else EmployeeSignUp(request.args)
+    form = EmployerSignUp() if request.method == 'POST' else EmployerSignUp(request.args)
     if request.method == "POST" and form.validate_on_submit():
-        pass
-
-    return render_template('employer-sign.html')
+        hashed_password = bcrypt.generate_password_hash(
+            form.data['password']).decode('utf-8')
+        employer = Employer(email=form.email.data,
+                            company=form.company_name.data,
+                            password=hashed_password)
+        db.session.add(employer)
+        db.session.commit()
+        flash(f'Account created for {form.email.data}!', 'success')
+        return redirect(url_for('index'))
+    else:
+        print(form.validate())
+        print(form.errors)
+    return render_template('employer-sign.html', title='employer', form=form)
 
 
 @app.route('/sign-up')
@@ -149,7 +159,6 @@ def upload_job():
 @login_manager.user_loader
 def load_employee(user_id):
     return Employee.query.get(int(user_id))
-
 
 
 class Employee(db.Model, UserMixin):

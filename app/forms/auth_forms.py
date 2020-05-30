@@ -88,8 +88,8 @@ class EmployerSignUp(FlaskForm):
     def validate_employer_email(self, email):
         """Validate email address."""
         from app import Employer
-        employee = Employer.query.filter_by(email=email.data).first()
-        if employee:
+        employer = Employer.query.filter_by(email=email.data).first()
+        if employer:
             raise ValidationError(
                 'That email address is taken, please choose another.')
 
