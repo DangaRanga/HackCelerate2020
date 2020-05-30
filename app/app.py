@@ -66,7 +66,6 @@ def login():
             return redirect(url_for('index'))
         else:
             flash('Login unsuccessful. Please check email and password')
-
     else:
         print(form.validate_on_submit())
         print(form.errors)
