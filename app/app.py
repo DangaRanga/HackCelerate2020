@@ -3,9 +3,8 @@ from datetime import datetime
 from flask import Flask, flash, render_template, url_for, redirect, request
 from flask_bcrypt import Bcrypt
 from flask_sqlalchemy import SQLAlchemy
-from forms.auth_forms import LoginForm, EmployeeSignUp
-
-from config.config import Config
+from .forms.auth_forms import LoginForm, EmployeeSignUp
+from .config.config import Config
 
 
 # -----------------------------------------------------------------------------#
