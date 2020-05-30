@@ -5,10 +5,10 @@ from flask import Flask, flash, render_template, url_for, redirect, request
 from flask_bcrypt import Bcrypt
 from flask_login import UserMixin
 from flask_login import LoginManager
-from flask_login import login_user
+from flask_login import login_user, current_user
 from flask_sqlalchemy import SQLAlchemy
-from .forms.auth_forms import LoginForm, EmployerLoginForm, EmployeeSignUp, EmployerSignUp
-from .config.config import Config
+from forms.auth_forms import LoginForm, EmployerLoginForm, EmployeeSignUp, EmployerSignUp
+from config.config import Config
 from flask_wtf.csrf import CSRFProtect
 
 
@@ -21,6 +21,7 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///remoteja.db"
 secret_key = os.urandom(28)
 app.config['WTF_CSRF_SECRET_KEY'] = os.urandom(28)
+app.config['WTF_CSRF_ENABLED'] = True
 app.config['SECRET_KEY'] = secret_key
 # Configure db
 db = SQLAlchemy(app)
