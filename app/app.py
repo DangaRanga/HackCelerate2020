@@ -34,7 +34,6 @@ def index():
 def login():
     form = LoginForm()
     if form.validate_on_submit():
-
         flash('Successful login', 'success')
         return redirect(url_for('index'))
     else:
