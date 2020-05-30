@@ -189,7 +189,7 @@ def load_employee(user_id):
 
 class Employee(db.Model, UserMixin):
     """Class representing an Employee."""
-
+    __tablename__ = "employee"
     id = db.Column(db.Integer, primary_key=True)
     f_name = db.Column(db.String(30), nullable=False)
     l_name = db.Column(db.String(30), nullable=False)
@@ -204,7 +204,7 @@ class Employee(db.Model, UserMixin):
 
 class Employer(db.Model, UserMixin):
     """Class representing an Employer"""
-
+    __tablename__ = "employer"
     id = db.Column(db.Integer, primary_key=True)
     company = db.Column(db.String(30), nullable=False)
     email = db.Column(db.String(30), unique=True, nullable=False)
@@ -218,7 +218,7 @@ class Employer(db.Model, UserMixin):
 
 class JobPost(db.Model, UserMixin):
     """Class representing a JobPost."""
-
+    __tablename__ = "jobpost"
     post_no = db.Column(db.Integer, primary_key=True)
     job_title = db.Column(db.String(20), nullable=False)
     job_type = db.Column(db.String(15), nullable=False)
@@ -239,6 +239,5 @@ class JobPost(db.Model, UserMixin):
 
 # -----------------------------------------------------------------------------#
 if __name__ == '__main__':
-    db.drop_all()
     db.create_all()
     app.run(debug=True)
