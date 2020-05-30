@@ -3,7 +3,7 @@ from datetime import datetime
 from flask import Flask, render_template, url_for, redirect
 from .forms.auth_forms import LoginForm, EmployeeSignUp
 from flask_sqlalchemy import SQLAlchemy
-from config.config import Config
+from .config.config import Config
 
 # -----------------------------------------------------------------------------#
 #                          Initialize components
