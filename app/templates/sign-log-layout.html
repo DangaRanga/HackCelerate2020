@@ -18,7 +18,11 @@
         <span class="nav-btns">
             <a href="{{ url_for('index') }}" class="link">Home</a>
             <a href="{{ url_for('jobs') }}" class="link">Jobs</a>
+            {% if login %}
+            <a href="{{ url_for('signup') }}" class="btn-pink">Sign Up</a>
+            {% else %}
             <a href="{{ url_for('login') }}" class="btn-pink">Login</a>
+            {% endif%}
         </span>
     </nav>
     <div class="con-sign">
