@@ -5,10 +5,10 @@ from flask import Flask, flash, render_template, url_for, redirect, request
 from flask_bcrypt import Bcrypt
 from flask_login import UserMixin
 from flask_login import LoginManager
-from flask_login import login_user, current_user
+from flask_login import login_user, current_user, logout_user
 from flask_sqlalchemy import SQLAlchemy
-from .forms.auth_forms import LoginForm, EmployerLoginForm, EmployeeSignUp, EmployerSignUp
-from .config.config import Config
+from forms.auth_forms import LoginForm, EmployerLoginForm, EmployeeSignUp, EmployerSignUp
+from config.config import Config
 from flask_wtf.csrf import CSRFProtect
 
 
@@ -48,6 +48,8 @@ def index():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
     form = LoginForm()
     if form.validate_on_submit():
         employee = Employee.query.filter_by(email=form.email.data).first()
@@ -72,6 +74,12 @@ def login():
     return render_template('login.html', title='login', form=form)
 
 
+@app.route("/logout")
+def logout():
+    logout_user()
+    return redirect(url_for('index'))
+
+
 @app.route('/employer-login', methods=['GET', 'POST'])
 def employer_login():
     form = EmployerLoginForm()
@@ -86,6 +94,8 @@ def employer_login():
 @app.route('/employee-sign', methods=['GET', 'POST'])
 def employee_signup():
     # form = EmployeeSignUp()
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
     form = EmployeeSignUp() if request.method == 'POST' else EmployeeSignUp(request.args)
     if request.method == "POST" and form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(
@@ -143,9 +153,6 @@ def load_employee(user_id):
     return Employee.query.get(int(user_id))
 
 
-@login_manager.user_loader
-def load_employer(user_id):
-    return Employer.query.get(int(user_id))
 
 class Employee(db.Model, UserMixin):
     """Class representing an Employee."""
