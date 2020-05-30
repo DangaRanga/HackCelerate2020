@@ -7,8 +7,8 @@ from flask_login import UserMixin
 from flask_login import LoginManager
 from flask_login import login_user, current_user, logout_user
 from flask_sqlalchemy import SQLAlchemy
-from .forms.auth_forms import LoginForm, EmployerLoginForm, EmployeeSignUp, EmployerSignUp, RegisterJobPost
-from .config.config import Config
+from forms.auth_forms import LoginForm, EmployerLoginForm, EmployeeSignUp, EmployerSignUp, RegisterJobPost
+from config.config import Config
 from flask_wtf.csrf import CSRFProtect
 
 
@@ -18,13 +18,14 @@ from flask_wtf.csrf import CSRFProtect
 
 config = Config()
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URI')
+app.config['SQLALCHEMY_DATABASE_URI'] 
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config['WTF_CSRF_SECRET_KEY'] = b'\nV\xb8\x01\r\xbf\x94\xcd\xda\xa4y\xd7\x127\xe0!{C\xf2\x1d\xe1\x19\xb5\xfd(\x15\xa5n\x02\xeb=v\xa0U|\xca\xdf3\xb8\xc0#\nU"4\x18x)N\x07\x9a\xcd\xbb\xcf\x10\x86\rX\x9b\xc4\xb6}8`'
 app.config['WTF_CSRF_ENABLED'] = True
 app.config['SECRET_KEY'] = b'\nV\xb8\x01\r\xbf\x94\xcd\xda\xa4y\xd7\x127\xe0!{C\xf2\x1d\xe1\x19\xb5\xfd(\x15\xa5n\x02\xeb=v\xa0U|\xca\xdf3\xb8\xc0#\nU"4\x18x)N\x07\x9a\xcd\xbb\xcf\x10\x86\rX\x9b\xc4\xb6}8`'
 # Configure db
 db = SQLAlchemy(app)
+
 # Configure Bcrypt for password hashw
 bcrypt = Bcrypt(app)
 config.set_config(app)
@@ -239,5 +240,4 @@ class JobPost(db.Model, UserMixin):
 
 # -----------------------------------------------------------------------------#
 if __name__ == '__main__':
-    db.create_all()
     app.run(debug=True)
