@@ -145,9 +145,11 @@ def signup():
 
 
 @app.route('/jobs')
-def jobs():
-    jobs = [1, 2, 3, 4, 5]
-    return render_template('jobs.html', jobs=jobs)
+def jobs(): 
+    # jobs = [1, 2, 3, 4, 5]
+    jobs = [JobPost.query.filter_by(post_no=x+1).first() for x in range(JobPost.query.count())]
+    no_jobs = len(jobs)
+    return render_template('jobs.html', jobs=jobs, no_jobs=no_jobs)
 
 
 @app.route('/view-job')

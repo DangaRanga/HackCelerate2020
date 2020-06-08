@@ -50,12 +50,12 @@
         <div class="jobs-list">
             {% for job in jobs %}
                 <div class="job-con">
-                    <h2 class="job-title">Customer Representative</h2>
+                    <h2 class="job-title">{{ job.job_title }}</h2>
                     <p class="company-title">Company.co</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore porro doloremque ea quam in nostrum rem laudantium earum reprehenderit impedit. Culpa, cumque! Similique iusto, incidunt aspernatur explicabo numquam sit qui.</p>
+                    <p>{{ job.job_description }}</p>
                     <div class="job-con-grid">
                         <div class="date">
-                            <p>May 05, 2020</p>
+                            <p>{{ '{:%B %d, %Y}'.format(job.date_posted) }}</p>
                         </div>
                         <div class="spacer"></div>
                         <div>

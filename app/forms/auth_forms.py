@@ -6,6 +6,7 @@ from wtforms.validators import InputRequired, DataRequired, Email, EqualTo, Vali
 
 class EmployerLoginForm(FlaskForm):
     """Class representing a login form."""
+
     email = StringField('Email',
                         validators=[
                             Email('Please enter a valid email address'),
@@ -24,6 +25,7 @@ class EmployerLoginForm(FlaskForm):
 
 class LoginForm(FlaskForm):
     """Class representing a login form."""
+
     email = StringField('Email',
                         validators=[
                             Email('Please enter a valid email address'),
@@ -38,6 +40,7 @@ class LoginForm(FlaskForm):
 
 class EmployeeSignUp(FlaskForm):
     """Class representing an employee sign up form."""
+
     email = StringField('Email',
                         validators=[
                             Email('Please enter a valid email address'),
@@ -60,7 +63,8 @@ class EmployeeSignUp(FlaskForm):
     submit = SubmitField('Sign Up')
 
     def validate_employee_email(self, email):
-        """Used to validate email"""
+        """Used to validate email."""
+
         from app import Employee
         employee = Employee.query.filter_by(email=email.data).first()
         if employee:
@@ -96,8 +100,10 @@ class EmployerSignUp(FlaskForm):
 
 
 class RegisterJobPost(FlaskForm):
+    """Class representing a job post."""
+
     company = StringField('Company',
-                        validators=[InputRequired()])
+                          validators=[InputRequired()])
     job_title = StringField('Job Title',
                             validators=[
                                 InputRequired()
